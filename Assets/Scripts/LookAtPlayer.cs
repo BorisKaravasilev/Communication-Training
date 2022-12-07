@@ -22,7 +22,6 @@ public class LookAtPlayer : MonoBehaviour
     // Update is called once per frame
     // The object should rotate to face the player
     // The object should rotate around the z-axis
-
     void Update()
     {
         if (player != null)
