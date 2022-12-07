@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class LookAtPlayer : MonoBehaviour
 {
+    public string playerTag = "Player";
     private Transform player;
     
     // Start is called before the first frame update
     void Start()
     {
-        var players = GameObject.FindGameObjectsWithTag("Player");
+        var players = GameObject.FindGameObjectsWithTag(playerTag);
 
         if (players.Length > 0)
         {
