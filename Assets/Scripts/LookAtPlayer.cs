@@ -20,11 +20,18 @@ public class LookAtPlayer : MonoBehaviour
     }
 
     // Update is called once per frame
+    // The object should rotate to face the player
+    // The object should rotate around the z-axis
+
     void Update()
     {
-        Vector3 direction = player.position - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, speed * Time.deltaTime);
+        if (player != null)
+        {
+            Vector3 direction = player.position - transform.position;
+            float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, speed * Time.deltaTime);
+        }
+
     }
 }
