@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Ping : MonoBehaviour
 {
+    public GameObject PingPrefab;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -21,11 +21,10 @@ public class Ping : MonoBehaviour
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
             {
                 Vector3 hitPosition = transform.position + transform.TransformDirection(Vector3.forward) * hit.distance;
-                hitPosition.y += 0.5f;
 
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.green, 0.5f);
                 Debug.Log("Did Hit");
-                Instantiate(GameObject.CreatePrimitive(PrimitiveType.Sphere), hitPosition, Quaternion.identity);
+                Instantiate(PingPrefab, hitPosition, Quaternion.identity);
             }
             else
             {
