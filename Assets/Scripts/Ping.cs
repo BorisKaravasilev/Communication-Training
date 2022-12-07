@@ -13,11 +13,6 @@ public class Ping : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-    
-    void FixedUpdate()
-    {
         if (Input.GetKeyDown(KeyCode.E))
         {
             RaycastHit hit;
@@ -38,5 +33,10 @@ public class Ping : MonoBehaviour
                 Debug.Log("Did not Hit");
             }
         }
+    }
+    
+    void FixedUpdate()
+    {
+
     }
 }
