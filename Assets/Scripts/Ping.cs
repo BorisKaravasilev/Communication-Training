@@ -3,6 +3,7 @@ using UnityEngine;
 public class Ping : MonoBehaviour
 {
     public GameObject PingPrefab;
+    public FinishScreen finishScreen;
     
     // Start is called before the first frame update
     void Start()
@@ -20,16 +21,22 @@ public class Ping : MonoBehaviour
             // Does the ray intersect any objects excluding the player layer
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
             {
+                if (hit.transform.gameObject.tag == "Enemy")
+                {
+                    finishScreen.MarkedEnemies += 1;
+                    finishScreen.LiveScore.text = $"Marked enemies: {finishScreen.MarkedEnemies} / 2";
+                }
+                
                 Vector3 hitPosition = transform.position + transform.TransformDirection(Vector3.forward) * hit.distance;
 
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.green, 0.5f);
-                Debug.Log("Did Hit");
+                // Debug.Log("Did Hit");
                 Instantiate(PingPrefab, hitPosition, Quaternion.identity);
             }
             else
             {
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.red, 0.5f);
-                Debug.Log("Did not Hit");
+                // Debug.Log("Did not Hit");
             }
         }
     }
